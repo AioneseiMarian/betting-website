@@ -1,0 +1,57 @@
+# Node.js / Angular (frontend-specific)
+frontend/node_modules/
+frontend/.angular/
+frontend/dist/
+frontend/.cache/
+frontend/.npm/
+frontend/*.log
+frontend/npm-debug.log*
+frontend/yarn-error.log
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+frontend/tsconfig.tsbuildinfo
+
+# Spring / Java (backend-specific)
+backend/target/
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd
+backend/*.log
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/.factorypath
+backend/*.jar
+backend/*.war
+backend/*.ear
+backend/.springBeans
+backend/.sts4-cache/
+backend/.env
+
+# General IDE and editor files
+.vscode/
+.idea/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Environment and secrets
+*.env.local
+*.env.*.local
+.envrc
+
+# Dependency lock files (optional, include if you want to commit them)
+# frontend/package-lock.json
+# frontend/yarn.lock
+
+# Miscellaneous
+*.bak
+*.swp
+*~
+*.tmp
+*.temp

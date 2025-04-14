@@ -1,0 +1,65 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <h2>Intră în cont și joacă!</h2>
+    <button mat-icon-button (click)="onClose()">
+      <span class="material-icons">close</span>
+    </button>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email" required />
+      <mat-error *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+        <span *ngIf="loginForm.get('email')?.hasError('required')">
+          E-mail este obligatoriu
+        </span>
+        <span *ngIf="loginForm.get('email')?.hasError('email')">
+          Introduceți un e-mail valid
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Parola</mat-label>
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        formControlName="password"
+        required
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        type="button"
+      >
+        <span class="material-icons">{{
+          hidePassword ? "visibility_off" : "visibility"
+        }}</span>
+      </button>
+      <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+        <span *ngIf="loginForm.get('password')?.hasError('required')">
+          Parola este obligatorie
+        </span>
+        <span *ngIf="loginForm.get('password')?.hasError('minlength')">
+          Parola trebuie să aibă cel puțin 6 caractere
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="actions">
+      <button
+        mat-flat-button
+        color="warn"
+        type="submit"
+        class="full-width"
+        [disabled]="loginForm.invalid"
+      >
+        Intră în cont
+      </button>
+      <a href="#" class="forgot-password">Ai uitat parola?</a>
+      <a href="#" class="no-account">Nu ai cont?</a>
+    </div>
+  </form>
+</div>

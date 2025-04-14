@@ -1,0 +1,96 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <h2>Înregistrează-te</h2>
+    <button mat-icon-button (click)="onClose()">
+      <span class="material-icons">close</span>
+    </button>
+  </div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email" required />
+      <mat-error *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+        <span *ngIf="registerForm.get('email')?.hasError('required')">
+          E-mail este obligatoriu
+        </span>
+        <span *ngIf="registerForm.get('email')?.hasError('email')">
+          Introduceți un e-mail valid
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nume de utilizator</mat-label>
+      <input matInput formControlName="username" required />
+      <mat-error *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.invalid">
+        <span *ngIf="registerForm.get('username')?.hasError('required')">
+          Numele de utilizator este obligatoriu
+        </span>
+        <span *ngIf="registerForm.get('username')?.hasError('minlength')">
+          Numele de utilizator trebuie să aibă cel puțin 3 caractere
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Parola</mat-label>
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        formControlName="password"
+        required
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        type="button"
+      >
+        <span class="material-icons">{{
+            hidePassword ? "visibility_off" : "visibility"
+          }}</span>
+      </button>
+      <mat-error *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+        <span *ngIf="registerForm.get('password')?.hasError('required')">
+          Parola este obligatorie
+        </span>
+        <span *ngIf="registerForm.get('password')?.hasError('minlength')">
+          Parola trebuie să aibă cel puțin 6 caractere
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Confirmă parola</mat-label>
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        formControlName="confirmPassword"
+        required
+      />
+      <mat-error *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid">
+        <span *ngIf="registerForm.get('confirmPassword')?.hasError('required')">
+          Confirmarea parolei este obligatorie
+        </span>
+      </mat-error>
+      <mat-error *ngIf="passwordsDoNotMatch && registerForm.get('confirmPassword')?.touched">
+        Parolele nu se potrivesc
+      </mat-error>
+    </mat-form-field>
+
+    <div class="actions">
+      <button
+        mat-flat-button
+        color="warn"
+        type="submit"
+        class="full-width"
+        [disabled]="registerForm.invalid || isLoading"
+      >
+        <span *ngIf="!isLoading">Înregistrare</span>
+        <span *ngIf="isLoading">Se încarcă...</span>
+      </button>
+      <a href="#" class="already-account">Ai deja cont?</a>
+    </div>
+  </form>
+</div>

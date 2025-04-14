@@ -1,0 +1,92 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: linear-gradient(to right, #ffe6e6, #fff);
+  border-bottom: 1px solid #ddd;
+
+  // Logo
+  .logo {
+    a {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff0000; // Red color for "SUPERBET"
+      text-decoration: none;
+    }
+  }
+
+  // Navigation Links
+  .nav-links {
+    display: flex;
+    gap: 20px;
+
+    .nav-item {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 16px;
+      position: relative;
+
+      &:hover {
+        color: #ff0000;
+      }
+
+      // Live badge
+      .live-badge {
+        background-color: #ff0000;
+        color: #fff;
+        font-size: 12px;
+        padding: 2px 6px;
+        border-radius: 10px;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  // Right Actions
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      color: #333;
+
+      &:hover {
+        color: #ff0000;
+      }
+    }
+
+    .register-btn {
+      background: none;
+      border: 1px solid #333;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 500;
+
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+
+    .login-btn {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 500;
+
+      &:hover {
+        background-color: #e60000;
+      }
+    }
+  }
+}

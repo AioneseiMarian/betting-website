@@ -1,0 +1,26 @@
+<header class="header">
+  <!-- Logo -->
+  <div class="logo">
+    <a [routerLink]="homeLink.path">{{homeLink.label}}</a>
+  </div>
+
+  <!-- Navigation Links -->
+  <nav class="nav-links">
+    <a *ngFor="let link of navLinks" [routerLink]="link.path" class="nav-item">
+      {{ link.label }}
+      <span *ngIf="link.badge" class="live-badge">{{ link.badge }}</span>
+    </a>
+  </nav>
+
+  <!-- Right Actions -->
+  <div class="actions">
+    <button class="icon-btn">
+      <span class="material-icons">search</span>
+    </button>
+    <button class="icon-btn">
+      <span class="material-icons">person</span>
+    </button>
+    <button class="register-btn" (click)="onRegister()">Înregistrare</button>
+    <button class="login-btn" (click)="onLogin()">Intră în cont</button>
+  </div>
+</header>
