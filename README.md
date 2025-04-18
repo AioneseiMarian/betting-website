@@ -2,6 +2,8 @@
 
 A modern betting platform built with Angular for the frontend and Spring Boot for the backend.
 
+!!! Backend not fully implemented !!!
+
 ## Features
 
 - User authentication (login, register, profile management)
