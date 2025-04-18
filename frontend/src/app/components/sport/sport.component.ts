@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatchCardComponent, BetType } from '../../shared/components/match-card/match-card.component';
 import { BettingService } from '../../services/betting.service';
 import { Match } from '../../models/match.model';
 import { BetSelection } from '../../models/bet-selection.model';
-import { MatchService } from '../../services/match.service';
+import { MatchService } from '../../services/match.service'
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-sport',
   standalone: true,
-  imports: [CommonModule, MatchCardComponent]
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatchCardComponent
+  ],
+  templateUrl: './sport.component.html',
+  styleUrls: ['./sport.component.scss']
 })
-export class HomeComponent implements OnInit {
-  featuredMatches: Match[] = [];
+export class SportComponent implements OnInit {
+  sportMatches: Match[] = [];
 
   constructor(
     private matchService: MatchService,
@@ -22,8 +31,8 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.matchService.getFeaturedMatches().subscribe(matches => {
-      this.featuredMatches = matches;
+    this.matchService.getSportMatches().subscribe(matches => {
+      this.sportMatches = matches;
     });
   }
 

@@ -54,12 +54,18 @@
         color="warn"
         type="submit"
         class="full-width"
-        [disabled]="loginForm.invalid"
+        [disabled]="loginForm.invalid || isLoading"
       >
-        Intră în cont
+        <span *ngIf="!isLoading">Intră în cont</span>
+        <span *ngIf="isLoading">Se încarcă...</span>
       </button>
-      <a href="#" class="forgot-password">Ai uitat parola?</a>
-      <a href="#" class="no-account">Nu ai cont?</a>
+      
+      <div class="secondary-actions">
+        <a mat-button class="forgot-password">Ai uitat parola?</a>
+        <button mat-button type="button" (click)="switchToRegister()" class="register-button">
+          Nu ai cont? Înregistrează-te
+        </button>
+      </div>
     </div>
   </form>
 </div>

@@ -1,0 +1,68 @@
+<div class="supersocial-container">
+  <h1>Super Social</h1>
+  
+  <div class="social-bets">
+    <mat-card *ngFor="let bet of socialBets" class="social-bet-card">
+      <mat-card-header>
+        <div class="user-info">
+          <img [src]="bet.user.avatar" alt="User avatar" class="user-avatar">
+          <div class="user-details">
+            <h3>{{bet.user.name}}</h3>
+            <span class="followers">{{bet.user.followers}} followers</span>
+          </div>
+        </div>
+        <button mat-button class="follow-button" (click)="onFollow(bet.id)">
+          <mat-icon>person_add</mat-icon>
+          Follow
+        </button>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <div class="match-info">
+          <div class="league">{{bet.match.league}}</div>
+          <div class="teams">
+            <span class="team">{{bet.match.homeTeam}}</span>
+            <span class="vs">vs</span>
+            <span class="team">{{bet.match.awayTeam}}</span>
+          </div>
+          <div class="date">{{bet.match.date | date:'medium'}}</div>
+        </div>
+        
+        <div class="prediction">
+          <div class="prediction-header">
+            <h3>Prediction</h3>
+            <mat-chip [color]="bet.prediction.type === 'home' ? 'primary' : bet.prediction.type === 'away' ? 'accent' : 'warn'" selected>
+              {{bet.prediction.type === 'home' ? 'Home Win' : bet.prediction.type === 'away' ? 'Away Win' : 'Draw'}}
+            </mat-chip>
+          </div>
+          
+          <div class="prediction-details">
+            <div class="detail">
+              <span class="label">Odds:</span>
+              <span class="value">{{bet.prediction.odds}}</span>
+            </div>
+            <div class="detail">
+              <span class="label">Stake:</span>
+              <span class="value">${{bet.prediction.stake}}</span>
+            </div>
+            <div class="detail">
+              <span class="label">Potential Win:</span>
+              <span class="value highlight">${{bet.prediction.potentialWin}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      
+      <mat-card-actions>
+        <button mat-button (click)="onLike(bet.id)" [class.liked]="bet.isLiked">
+          <mat-icon>{{bet.isLiked ? 'favorite' : 'favorite_border'}}</mat-icon>
+          {{bet.likes}}
+        </button>
+        <button mat-button (click)="onComment(bet.id)">
+          <mat-icon>comment</mat-icon>
+          {{bet.comments}}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

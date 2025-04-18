@@ -90,7 +90,12 @@
         <span *ngIf="!isLoading">Înregistrare</span>
         <span *ngIf="isLoading">Se încarcă...</span>
       </button>
-      <a href="#" class="already-account">Ai deja cont?</a>
+      
+      <div class="secondary-actions">
+        <button mat-button type="button" (click)="switchToLogin()" class="login-button">
+          Ai deja cont? Intră în cont
+        </button>
+      </div>
     </div>
   </form>
 </div>

@@ -1,18 +1,26 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    HeaderComponent,
-    RouterOutlet,
-    MatIconModule,
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [RouterOutlet, HeaderComponent],
+  template: `
+    <app-header></app-header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  `,
+  styles: [`
+    main {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: calc(100vh - 64px);
+    }
+  `]
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'betting-website';
 }

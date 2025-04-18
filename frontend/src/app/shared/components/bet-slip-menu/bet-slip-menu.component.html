@@ -1,0 +1,71 @@
+<button mat-icon-button [matBadge]="getBetSlipCount()" matBadgeColor="warn" [matBadgeHidden]="getBetSlipCount() === 0">
+  <mat-icon>receipt</mat-icon>
+</button>
+
+<button mat-button [matMenuTriggerFor]="betSlipMenu">
+  Bet Slip
+</button>
+
+<mat-menu #betSlipMenu="matMenu" class="bet-slip-menu" [hasBackdrop]="true" [overlapTrigger]="false">
+  <div class="bet-slip-content-wrapper" (click)="$event.stopPropagation()">
+    <div class="bet-slip-header">
+      <h3>Bet Slip</h3>
+      <button mat-icon-button (click)="clearBetSlip()" *ngIf="getBetSlipCount() > 0">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="bet-slip-content" *ngIf="getBetSlipCount() > 0; else emptyBetSlip">
+      <div class="bet-item" *ngFor="let bet of betSlip?.selections">
+        <div class="bet-info">
+          <div class="bet-teams">{{ bet.homeTeam }} vs {{ bet.awayTeam }}</div>
+          <div class="bet-type">{{ bet.betType }} &#64; {{ bet.odds }}</div>
+        </div>
+        <button mat-icon-button (click)="removeBet(bet.matchId)" class="remove-button">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="bet-summary">
+        <div class="summary-row">
+          <span>Total Odds:</span>
+          <span>{{ getTotalOdds() | number:'1.2-2' }}</span>
+        </div>
+        
+        <div class="stake-input">
+          <mat-form-field appearance="outline" class="stake-field">
+            <mat-label>Stake (RON)</mat-label>
+            <input matInput type="number" min="1" 
+                   [(ngModel)]="betSlip.totalStake" 
+                   (ngModelChange)="updateTotals()"
+                   placeholder="Enter stake">
+          </mat-form-field>
+        </div>
+
+        <div class="summary-row potential-win">
+          <span>Total Potential Win:</span>
+          <span>{{ getPotentialWin() | currency:'RON ' }}</span>
+        </div>
+      </div>
+
+      <div class="bet-actions">
+        <button mat-raised-button color="primary" 
+                [disabled]="!isValidBetSlip()"
+                (click)="placeBets()">
+          Place Bet
+        </button>
+      </div>
+    </div>
+
+    <ng-template #emptyBetSlip>
+      <div class="empty-bet-slip">
+        <p>Your bet slip is empty</p>
+        <p>Add selections from matches to place a bet</p>
+      </div>
+    </ng-template>
+  </div>
+</mat-menu>

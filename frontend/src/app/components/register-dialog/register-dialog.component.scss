@@ -1,59 +1,50 @@
 .dialog-container {
-  padding: 20px;
+  padding: 24px;
   max-width: 400px;
-  width: 100%;
+  margin: 0 auto;
 }
 
 .dialog-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 
   h2 {
     margin: 0;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 500;
-  }
-
-  .material-icons {
-    cursor: pointer;
   }
 }
 
 .full-width {
   width: 100%;
-  margin-bottom: 15px;
 }
 
 .actions {
+  margin-top: 24px;
+
+  button[type="submit"] {
+    margin-bottom: 16px;
+    height: 48px;
+    font-size: 16px;
+  }
+}
+
+.secondary-actions {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 
-  button {
-    background-color: #ff0000;
-    color: #fff;
-    padding: 10px;
-    border-radius: 20px;
-
-    &:disabled{
-      background-color: #f0f0f0;
-      color: #333;
-      cursor: not-allowed;
-    } 
-  }
-
-  .already-account {
-    color: #333;
+  .login-button {
     font-size: 14px;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    opacity: 0.87;
   }
+}
+
+mat-form-field {
+  margin-bottom: 16px;
 }
 
 mat-error {

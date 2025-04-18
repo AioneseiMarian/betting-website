@@ -1,12 +1,33 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'sport', component: HomeComponent }, // Replace with actual components
-  { path: 'live', component: HomeComponent },
-  { path: 'supersocial', component: HomeComponent },
-  { path: 'biletele-mele', component: HomeComponent }
+  {
+    path: 'home',
+    loadComponent: () => import('./components/home/home.component').then(m => m.HomeComponent)
+  },
+  {
+    path: 'live',
+    loadComponent: () => import('./components/live/live.component').then(m => m.LiveComponent)
+  },
+  {
+    path: 'sport',
+    loadComponent: () => import('./components/sport/sport.component').then(m => m.SportComponent)
+  },
+  {
+    path: 'supersocial',
+    loadComponent: () => import('./components/supersocial/supersocial.component').then(m => m.SupersocialComponent)
+  },
+  {
+    path: 'biletele-mele',
+    loadComponent: () => import('./components/biletele-mele/biletele-mele.component').then(m => m.BileteleMeleComponent)
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./components/profile/profile.component').then(m => m.ProfileComponent)
+  },
+  {
+    path: 'settings',
+    loadComponent: () => import('./components/settings/settings.component').then(m => m.SettingsComponent)
+  }
 ];

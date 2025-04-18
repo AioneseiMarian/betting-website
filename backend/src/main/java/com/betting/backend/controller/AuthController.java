@@ -4,6 +4,7 @@ import com.betting.backend.model.User;
 import com.betting.backend.model.dto.AuthResponse;
 import com.betting.backend.model.dto.LoginRequest;
 import com.betting.backend.model.dto.RegisterRequest;
+import com.betting.backend.model.dto.UserDto;
 import com.betting.backend.repository.UserRepository;
 import com.betting.backend.util.JwtUtil;
 import org.springframework.http.ResponseEntity;
@@ -66,16 +67,24 @@ public class AuthController {
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            String token = jwtUtil.generateToken(userRepository.findByEmail(request.getEmail()).getUsername());
-
-//            String token = "token:" + userRepository.findByEmail(request.getEmail()).getUsername();
+            User user = userRepository.findByEmail(request.getEmail());
+            String token = jwtUtil.generateToken(user.getUsername());
 
             AuthResponse response = new AuthResponse();
             response.setToken(token);
+            
+            // Create and set UserDto
+            UserDto userDto = new UserDto();
+            userDto.setId(user.getId());
+            userDto.setEmail(user.getEmail());
+            userDto.setUsername(user.getUsername());
+            userDto.setRole(user.getRole());
+            response.setUser(userDto);
+            
             return ResponseEntity.ok(response);
 
         } catch (BadCredentialsException e) {
-            return ResponseEntity.status(401).body("Invalid email or password" + request.getEmail() + " " + request.getPassword());
+            return ResponseEntity.status(401).body("Invalid email or password");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("An error occurred during login: " + e.getMessage());
         }

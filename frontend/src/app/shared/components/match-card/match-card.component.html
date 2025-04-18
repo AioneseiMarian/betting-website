@@ -1,0 +1,41 @@
+<div class="match-card">
+  <div class="card-header">
+    <div class="league">{{match.league}}</div>
+    <div class="date-info">
+      {{match.date | date:'medium'}}
+      <span *ngIf="match.isLive" class="live-badge">LIVE</span>
+    </div>
+  </div>
+  
+  <div class="match-teams">
+    <div class="team home">
+      <span class="team-name">{{match.homeTeam}}</span>
+      <button mat-button 
+              class="odds-button" 
+              [class.selected]="isBetSelected('home')"
+              (click)="onBetSelect('home')">
+        {{match.odds.home}}
+      </button>
+    </div>
+    
+    <div class="team draw">
+      <span class="vs">VS</span>
+      <button mat-button 
+              class="odds-button" 
+              [class.selected]="isBetSelected('draw')"
+              (click)="onBetSelect('draw')">
+        {{match.odds.draw}}
+      </button>
+    </div>
+    
+    <div class="team away">
+      <span class="team-name">{{match.awayTeam}}</span>
+      <button mat-button 
+              class="odds-button" 
+              [class.selected]="isBetSelected('away')"
+              (click)="onBetSelect('away')">
+        {{match.odds.away}}
+      </button>
+    </div>
+  </div>
+</div> 

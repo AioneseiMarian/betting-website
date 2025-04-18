@@ -1,92 +1,383 @@
+// Variables for consistent theming
+$primary-color: #E41E31;
+$secondary-color: #1A1A1A;
+$text-light: #666;
+$background-light: #FFFFFF;
+$shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$border-radius: 8px;
+$transition: all 0.3s ease;
+
+// Mixins for reusable styles
+@mixin button-styles {
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 16px;
+  border-radius: $border-radius;
+  transition: $transition;
+  cursor: pointer;
+}
+
+// Header container
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: $background-light;
+  box-shadow: $shadow;
+  padding: 0 24px;
+}
+
+// Toolbar layout
+.toolbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 72px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+// Logo styling
+.logo-container {
+  .logo {
+    color: $primary-color;
+    text-decoration: none;
+    font-size: 1.75rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    transition: $transition;
+
+    &:hover {
+      opacity: 0.85;
+      transform: scale(1.02);
+    }
+
+    &:focus {
+      outline: 2px solid $primary-color;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Navigation links
+.nav-links {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background: linear-gradient(to right, #ffe6e6, #fff);
-  border-bottom: 1px solid #ddd;
+  gap: 2rem;
+  margin: 0 2rem;
 
-  // Logo
-  .logo {
-    a {
-      font-size: 24px;
-      font-weight: bold;
-      color: #ff0000; // Red color for "SUPERBET"
-      text-decoration: none;
+  a {
+    color: $secondary-color;
+    text-decoration: none;
+    padding: 0.75rem 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+    position: relative;
+    transition: $transition;
+
+    &:hover {
+      color: $primary-color;
+      transform: translateY(-1px);
+    }
+
+    &:focus {
+      outline: 2px solid $primary-color;
+      outline-offset: 2px;
+    }
+
+    &.active {
+      color: $primary-color;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: $primary-color;
+        animation: slide-in 0.3s ease;
+      }
+    }
+
+    .mat-badge-content {
+      background: $primary-color;
+      color: $background-light;
+      border-radius: 4px;
+      padding: 0 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      min-width: 20px;
+      height: 20px;
+      line-height: 20px;
+      margin-left: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+// Animation for active link underline
+@keyframes slide-in {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+// Authentication container
+.auth-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  button {
+    @include button-styles;
+
+    &:not(.user-button) {
+      &:first-of-type {
+        color: $secondary-color;
+        background: transparent;
+        border: 1px solid $secondary-color;
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.05);
+          border-color: $primary-color;
+          color: $primary-color;
+        }
+
+        &:focus {
+          outline: 2px solid $primary-color;
+          outline-offset: 2px;
+        }
+      }
+
+      &:last-of-type {
+        color: $background-light;
+        background: $primary-color;
+        border: none;
+
+        &:hover {
+          background: darken($primary-color, 10%);
+          transform: translateY(-1px);
+        }
+
+        &:focus {
+          outline: 2px solid $secondary-color;
+          outline-offset: 2px;
+        }
+      }
     }
   }
 
-  // Navigation Links
-  .nav-links {
-    display: flex;
-    gap: 20px;
-
-    .nav-item {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      font-size: 16px;
-      position: relative;
-
-      &:hover {
-        color: #ff0000;
-      }
-
-      // Live badge
-      .live-badge {
-        background-color: #ff0000;
-        color: #fff;
-        font-size: 12px;
-        padding: 2px 6px;
-        border-radius: 10px;
-        margin-left: 5px;
-      }
-    }
-  }
-
-  // Right Actions
-  .actions {
+  .user-button {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.5rem;
+    color: $secondary-color;
+    background: transparent;
+    padding: 6px 12px;
+    border: 1px solid transparent;
 
-    .icon-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 20px;
-      color: #333;
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: $primary-color;
+    }
+
+    &:focus {
+      outline: 2px solid $primary-color;
+      outline-offset: 2px;
+    }
+
+    .username {
+      font-weight: 600;
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    mat-icon {
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+      color: $text-light;
+      transition: $transition;
 
       &:hover {
-        color: #ff0000;
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+// Menu styling for dropdown
+mat-menu {
+  .mat-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    transition: $transition;
+
+    &:hover {
+      background: rgba($primary-color, 0.1);
+      color: $primary-color;
+
+      mat-icon {
+        color: $primary-color;
       }
     }
 
-    .register-btn {
-      background: none;
-      border: 1px solid #333;
-      padding: 8px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 500;
+    &:focus {
+      outline: 2px solid $primary-color;
+      outline-offset: 2px;
+    }
 
-      &:hover {
-        background-color: #f0f0f0;
+    mat-icon {
+      color: $text-light;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 1024px) {
+  .nav-links {
+    gap: 1.5rem;
+    margin: 0 1.5rem;
+
+    a {
+      font-size: 0.9rem;
+    }
+  }
+
+  .auth-container {
+    gap: 0.75rem;
+
+    button {
+      padding: 6px 12px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 16px;
+  }
+
+  .toolbar-container {
+    height: 64px;
+  }
+
+  .logo-container {
+    .logo {
+      font-size: 1.5rem;
+    }
+  }
+
+  .nav-links {
+    gap: 1rem;
+    margin: 0 1rem;
+
+    a {
+      font-size: 0.85rem;
+    }
+  }
+
+  .auth-container {
+    gap: 0.5rem;
+
+    button {
+      padding: 6px 10px;
+      font-size: 0.85rem;
+    }
+
+    .user-button {
+      padding: 4px 8px;
+
+      .username {
+        max-width: 100px;
+      }
+
+      mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0 12px;
+  }
+
+  .toolbar-container {
+    height: 56px;
+  }
+
+  .logo-container {
+    .logo {
+      font-size: 1.25rem;
+    }
+  }
+
+  .auth-container {
+    button:not(.user-button) {
+      padding: 4px 8px;
+      font-size: 0.8rem;
+
+      &:first-of-type {
+        display: none;
       }
     }
 
-    .login-btn {
-      background-color: #ff0000;
-      color: #fff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 500;
-
-      &:hover {
-        background-color: #e60000;
+    .user-button {
+      padding: 4px;
+      
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
       }
+    }
+  }
+}
+
+// Add portrait orientation specific styles
+@media (max-width: 480px) and (orientation: portrait) {
+  .toolbar-container {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 8px 0;
+  }
+
+  .logo-container {
+    order: 1;
+    flex: 1;
+  }
+
+  .auth-container {
+    order: 2;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin: 8px 0 0;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    
+    a {
+      font-size: 0.8rem;
+      padding: 4px 8px;
     }
   }
 }

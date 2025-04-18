@@ -1,0 +1,157 @@
+.supersocial-container {
+
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h1 {
+    margin-bottom: 24px;
+    color: #333;
+  }
+}
+
+.social-bets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.social-bet-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .user-details {
+    h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .followers {
+      font-size: 12px;
+      color: #666;
+    }
+  }
+}
+
+.follow-button {
+  margin-left: auto;
+}
+
+.match-info {
+  margin-bottom: 20px;
+  text-align: center;
+
+  .league {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+
+  .teams {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+
+    .team {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .vs {
+      color: #666;
+      font-size: 14px;
+    }
+  }
+
+  .date {
+    font-size: 12px;
+    color: #666;
+  }
+}
+
+.prediction {
+  background-color: #f5f5f5;
+  padding: 16px;
+  border-radius: 8px;
+
+  .prediction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+  }
+
+  .prediction-details {
+    display: grid;
+    gap: 12px;
+
+    .detail {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .label {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .value {
+        font-weight: 500;
+        color: #333;
+
+        &.highlight {
+          color: #2196f3;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 16px;
+
+  button {
+    &.liked {
+      color: #f44336;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .supersocial-container {
+    padding: 16px;
+  }
+
+  .social-bets {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,8 +1,8 @@
-<div class="home-container">
-  <h2>Featured Matches</h2>
+<div class="sport-matches">
+  <h2>Sport Matches</h2>
   <div class="match-grid">
     <app-match-card
-      *ngFor="let match of featuredMatches"
+      *ngFor="let match of sportMatches"
       [match]="match"
       (betSelect)="onBetSelect(match, $event)">
     </app-match-card>

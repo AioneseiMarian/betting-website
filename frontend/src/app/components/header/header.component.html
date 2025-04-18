@@ -1,26 +1,51 @@
-<header class="header">
-  <!-- Logo -->
-  <div class="logo">
-    <a [routerLink]="homeLink.path">{{homeLink.label}}</a>
-  </div>
+<div class="header">
+  <div class="toolbar-container">
+    <div class="logo-container">
+      <a routerLink="/home" class="logo">SuperBet</a>
+    </div>
 
-  <!-- Navigation Links -->
-  <nav class="nav-links">
-    <a *ngFor="let link of navLinks" [routerLink]="link.path" class="nav-item">
-      {{ link.label }}
-      <span *ngIf="link.badge" class="live-badge">{{ link.badge }}</span>
-    </a>
-  </nav>
+    <nav class="nav-links">
+      <ng-container *ngFor="let link of navLinks">
+        <a [routerLink]="link.path" 
+           routerLinkActive="active" 
+           [routerLinkActiveOptions]="{exact: true}"
+           [matBadge]="link.badge" 
+           [matBadgeHidden]="!link.badge">
+          {{link.label}}
+        </a>
+      </ng-container>
+    </nav>
 
-  <!-- Right Actions -->
-  <div class="actions">
-    <button class="icon-btn">
-      <span class="material-icons">search</span>
-    </button>
-    <button class="icon-btn">
-      <span class="material-icons">person</span>
-    </button>
-    <button class="register-btn" (click)="onRegister()">Înregistrare</button>
-    <button class="login-btn" (click)="onLogin()">Intră în cont</button>
+    <div class="auth-container">
+      <app-bet-slip-menu></app-bet-slip-menu>
+      
+      <ng-container *ngIf="!isLoggedIn; else userMenu">
+        <button mat-button (click)="openLoginDialog()">Login</button>
+        <button mat-button (click)="openRegisterDialog()">Register</button>
+      </ng-container>
+
+      <ng-template #userMenu>
+        <button mat-button [matMenuTriggerFor]="profileMenu" class="user-button">
+          <span class="username">{{username}}</span>
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        
+        <mat-menu #profileMenu="matMenu">
+          <button mat-menu-item routerLink="/profile">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+          </button>
+          <button mat-menu-item routerLink="/biletele-mele">
+            <mat-icon>receipt_long</mat-icon>
+            <span>Biletele Mele</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </ng-template>
+    </div>
   </div>
-</header>
+</div>
