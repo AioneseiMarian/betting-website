@@ -1,0 +1,3 @@
+{"_id":{"$oid":"67f36a9c7cffea16b5bad080"},"email":"marianaionesei7@gmail.com","username":"marian","password":"$2a$10$C1KkBM.LlAst5RK1JBRYKOkCY5oLoObdPQdxskg8qBKQUVAR7AKhy","_class":"com.betting.backend.model.User"}
+{"_id":{"$oid":"67f3aaf533503a7cbe876ada"},"email":"marianaionesei007@gmail.com","username":"marian123","password":"$2a$10$UTOCxhGR6T5cAWfb3Xp1Ku9LV7HoXo3eq91WQE1Jsg8NrfuE0xXY2","_class":"com.betting.backend.model.User"}
+{"_id":{"$oid":"67f3e1cb31026b393a09c69c"},"email":"doru.tanase@mta.ro","username":"doruboss","password":"$2a$10$7QymJ9eoiANVL.IqTORrdeJHLuPnkrpntSCKFhq0F4Y/Wuw4BXdPu","_class":"com.betting.backend.model.User"}
